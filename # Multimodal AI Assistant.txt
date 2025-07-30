@@ -1,0 +1,155 @@
+# Multimodal AI Assistant
+
+A FastAPI + Gradio-powered application for:
+- **Chatbot**: Conversational AI using Gemini (Google Generative AI)
+- **Resume Parser**: Extracts structured data from PDF resumes
+- **Image Analyzer**: Generates AI-powered descriptions for images
+
+---
+
+## 🚀 Features
+
+- **AI Chatbot**: Chat with an LLM-powered assistant (text only)
+- **Resume Parser**: Upload PDF resumes and get structured JSON output
+- **Image Analyzer**: Upload images and receive detailed AI-generated descriptions
+- **Modern UI**: Built with Gradio, featuring tabs for each tool
+- **API Endpoints**: RESTful endpoints for integration
+
+---
+
+## 🛠️ Tech Stack
+
+- **Backend**: FastAPI
+- **Frontend/UI**: Gradio
+- **AI/LLM**: Google Gemini (via `google.generativeai` and `langchain_google_genai`)
+- **PDF Parsing**: PyPDF
+- **Image Processing**: Pillow (PIL)
+- **Data Modeling**: Pydantic
+- **Environment Management**: python-dotenv
+- **CORS & Static Files**: FastAPI middleware
+
+---
+
+## 📦 Installation
+
+1. **Clone the repository**
+    ```sh
+    git clone https://github.com/yourusername/multimodal-rag.git
+    cd multimodal-rag
+    ```
+
+2. **Create a virtual environment**
+    ```sh
+    python -m venv venv
+    venv\Scripts\activate  # On Windows
+    # source venv/bin/activate  # On Mac/Linux
+    ```
+
+3. **Install dependencies**
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+4. **Set up environment variables**
+
+    Create a `.env` file in the root directory:
+    ```
+    GEMINI_API_KEY=your_google_gemini_api_key
+    ```
+
+---
+
+## 🏃‍♂️ Running the Application
+
+```sh
+uvicorn main:app --reload
+```
+
+- Visit [http://localhost:8000](http://localhost:8000) for the Gradio UI.
+- API docs available at [http://localhost:8000/docs](http://localhost:8000/docs)
+
+---
+
+## 🧑‍💻 Usage
+
+### Web UI
+
+- **Chatbot Tab**: Type your message and chat with the AI assistant.
+- **Resume Parser Tab**: Upload a PDF resume and get structured data.
+- **Image Analyzer Tab**: Upload an image and get a detailed description.
+
+### API Endpoints
+
+#### 1. Parse Resume
+
+- **POST** `/api/parse_resume/`
+- **Body**: `form-data` with `file` (PDF)
+- **Response**: JSON with parsed resume data
+
+#### 2. Describe Image
+
+- **POST** `/api/describe_image`
+- **Body**: `form-data` with `file` (image), `prompt` (optional)
+- **Response**: JSON with image description
+
+#### 3. Chat
+
+- **POST** `/api/chat`
+- **Body**: `form-data` with `message` (str), `history` (JSON list, optional)
+- **Response**: JSON with AI response
+
+#### 4. Get Results
+
+- **GET** `/api/results/{result_id}`
+- **Response**: Download processed result file
+
+---
+
+## 📂 Project Structure
+
+```
+multimodal-rag/
+│
+├── main.py              # Main FastAPI + Gradio app
+├── requirements.txt     # Python dependencies
+├── .env                 # Environment variables (not committed)
+├── uploads/             # Uploaded files
+├── processed/           # Processed results (JSON)
+├── static/              # Static files
+└── README.md            # Project documentation
+```
+
+---
+
+## 📝 Example `.env`
+
+```
+GEMINI_API_KEY=your_google_gemini_api_key
+```
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repo
+2. Create your feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature/your-feature`)
+5. Open a pull request
+
+## 🙋 FAQ
+
+- **Q:** I get a "Field required" error in Postman.
+  - **A:** Use `form-data` and ensure the field name matches the API (`file` for uploads).
+
+- **Q:** How do I get a Gemini API key?
+  - **A:** Visit [Google AI Studio](https://aistudio.google.com/app/apikey) and create a key.
+
+- **Q:** Can I deploy this on cloud?
+  - **A:** Yes! Deploy as a standard FastAPI app (e.g., on Azure, GCP, AWS, or Heroku).
+
+---
+
+## 📧 Contact
+
+For questions or support, open an issue or contact [faturotijude@gmail.com](08112533180).
